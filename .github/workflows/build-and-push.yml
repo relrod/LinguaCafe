@@ -22,8 +22,7 @@ name: Build and Publish Docker images
 
 ## If you want to push images only on a new tag/release
 on:
-  release:
-    types: [created]
+  push:
 
 env:
   REGISTRY: ghcr.io
@@ -66,7 +65,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_LINGUA_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # https://github.com/docker/build-push-action
       - name: Build and push PHP image to GitHub Container Registry
